@@ -4,11 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-
     [Table("Album")]
     public partial class Album
     {
-
         public Album()
         {
             Tracks = new HashSet<Track>();
