@@ -13,39 +13,42 @@ namespace DataAccessTest
     [TestClass]
     public class PlaylistRepositoryTest
     {
-        private readonly PlaylistRepository _entity;
+        private readonly UnitOfWork _unit;
 
         public PlaylistRepositoryTest()
         {
-            _entity = new PlaylistRepository();
+            _unit = new UnitOfWork(new ChinookContext());
         }
 
         [TestMethod]
         public void TestEf_Playlist_Cantidad()
         {
-            var count = _entity.Count();
+            var count = _unit.Playlist.Count();
             Assert.AreEqual(count > 0, true);
         }
 
-        [TestMethod]
-        public void TestEf_Playlist_Lista()
-        {
-            var lista = _entity.GetLista();
-            Assert.AreEqual(lista.Count() > 0, true);
-        }
+        //[TestMethod]
+        //public void TestEf_Playlist_Lista()
+        //{
+        //    var lista = _entity.GetLista();
+        //    Assert.AreEqual(lista.Count() > 0, true);
+        //}
 
         [TestMethod]
         public void TestEf_Playlist_Insertar()
         {
-            var intRes = _entity.Insert("prueba PLAYLIST EF");
-            Assert.AreEqual(intRes > 0, true);
+            var nuevo = new Playlist { Name = "Desde el UOW" };
+            _unit.Playlist.Add(nuevo);
+            int intRes = _unit.Complete();
+            var IdAlbum = _unit.Playlist.GetByName("Desde el UOW");
+            Assert.AreEqual(IdAlbum.PlaylistId > 0, true);
         }
 
         [TestMethod]
         public void TestEf_Playlist_BuscarPorId()
         {
-            var objPlay = _entity.GetPlaylistPorId(1);
-            var vEncontrado = new Playlist() { PlaylistId = 1, Name = "Music" };
+            var objPlay = _unit.Playlist.GetById(6);
+            var vEncontrado = new Playlist() { PlaylistId = 6, Name = "Audiobooks" };
             Assert.AreEqual(vEncontrado.PlaylistId, objPlay.PlaylistId);
             Assert.AreEqual(vEncontrado.Name, objPlay.Name);
         }

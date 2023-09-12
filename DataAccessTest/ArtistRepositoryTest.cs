@@ -13,11 +13,11 @@ namespace DataAccessTest
     [TestClass]
     public class ArtistRepositoryTest
     {
-        private readonly ArtistRepository _entity;
+        private readonly UnitOfWork _unit;
 
         public ArtistRepositoryTest()
         {
-            _entity = new ArtistRepository();
+            _unit = new UnitOfWork(new ChinookContext());
         }
 
         [TestMethod]
@@ -50,35 +50,38 @@ namespace DataAccessTest
         [TestMethod]
         public void TestEf_Artist_Cantidad()
         {
-            var count = _entity.Count();
+            var count = _unit.Artists.Count();
             Assert.AreEqual(count > 0, true);
         }
 
         [TestMethod]
         public void TestEf_Artista_Lista()
         {
-            var lisArtistas = _entity.GetListaArtista();
+            var lisArtistas = _unit.Artists.GetAll();
             Assert.AreEqual(lisArtistas.Count() > 0, true);
         }
 
         [TestMethod]
         public void TestEf_Artista_ListaSP()
         {
-            var lisArtistas = _entity.GetListaArtistaStore();
+            var lisArtistas = _unit.Artists.GetArtistsByStore();
             Assert.AreEqual(lisArtistas.Count() > 0, true);
         }
 
         [TestMethod]
         public void TestEf_InsertaArtista()
         {
-            var intRes = _entity.InsertArtista("prueba entityFramework");
-            Assert.AreEqual(intRes > 0, true);
+            var nuevo = new Artist { Name = "Desde el UOW" };
+            _unit.Artists.Add(nuevo);
+            int intRes = _unit.Complete();
+            var IdArtista = _unit.Artists.GetByName("Desde el UOW");
+            Assert.AreEqual(IdArtista.ArtistId > 0, true);
         }
 
         [TestMethod]
         public void TestEf_BuscarPorId()
         {
-            var objArtista = _entity.GetArtistaPorId(1);
+            var objArtista = _unit.Artists.GetById(1);
             var vEncontrado = new Artist() { ArtistId = 1, Name = "AC/DC" };
             Assert.AreEqual(vEncontrado.ArtistId, objArtista.ArtistId);
             Assert.AreEqual(vEncontrado.Name, objArtista.Name);
