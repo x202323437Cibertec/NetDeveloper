@@ -15,5 +15,6 @@ namespace DataAccess
         IAlbumRepository Album { get; }
         IPlaylistRepository Playlist { get; }
         ITrackRepository Track { get; }
+        ICustomerRepository Customers { get; }
     }
 }

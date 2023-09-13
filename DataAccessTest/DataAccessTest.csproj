@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AlbumRepositoryTest.cs" />
     <Compile Include="TrackRepositoryTest.cs" />
+    <Compile Include="CustomerRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

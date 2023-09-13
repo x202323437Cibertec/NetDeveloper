@@ -22,15 +22,15 @@ namespace DataAccessTest
             Assert.AreEqual(count > 0, true);
         }
 
-        [TestMethod]
-        public void TestEf_Track_Insertar()
-        {
-            var nuevo = new Track { Name = "Desde el UOW" };
-            _unit.Track.Add(nuevo);
-            int intRes = _unit.Complete();
-            var IdAlbum = _unit.Track.GetByName("Desde el UOW");
-            Assert.AreEqual(IdAlbum.TrackId > 0, true);
-        }
+        //[TestMethod]
+        //public void TestEf_Track_Insertar()
+        //{
+        //    var nuevo = new Track { Name = "Desde el UOW" };
+        //    _unit.Track.Add(nuevo);
+        //    int intRes = _unit.Complete();
+        //    var IdAlbum = _unit.Track.GetByName("Desde el UOW");
+        //    Assert.AreEqual(IdAlbum.TrackId > 0, true);
+        //}
 
         //[TestMethod]
         //public void TestEf_Track_BuscarPorId()

@@ -74,8 +74,9 @@ namespace DataAccessTest
             var nuevo = new Artist { Name = "Desde el UOW" };
             _unit.Artists.Add(nuevo);
             int intRes = _unit.Complete();
-            var IdArtista = _unit.Artists.GetByName("Desde el UOW");
-            Assert.AreEqual(IdArtista.ArtistId > 0, true);
+            var cArtista = _unit.Artists.GetByName("Desde el UOW");
+            Assert.AreEqual(cArtista.ArtistId > 0, true);
+            Assert.AreEqual(cArtista.Name, "Desde el UOW");
         }
 
         [TestMethod]
