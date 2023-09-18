@@ -10,8 +10,12 @@ namespace DataAccess.Repositories
     public class ArtistRepository: Repository<Artist>, IArtistRepository
     {
         public ArtistRepository(ChinookContext pContext) : base(pContext)
-        { 
-        
+        {
+        }
+
+        public Artist GetByName(string pName)
+        {
+            return chinookContext.Artist.FirstOrDefault(artista => artista.Name == pName);
         }
 
         public IEnumerable<Artist> GetArtistsByStore()
@@ -19,9 +23,15 @@ namespace DataAccess.Repositories
             return chinookContext.Database.SqlQuery<Artist>("GetListaArtista");
         }
 
-        public Artist GetByName(string pName)
+        public IEnumerable<Artist> GetArtistPage(int pPageIndex, int pPageSize)
         {
-            return chinookContext.Artist.FirstOrDefault(artista => artista.Name == pName);
+            var query = chinookContext.Artist.OrderBy(a => a.ArtistId).Skip((pPageIndex - 1) * pPageSize).Take(pPageSize);
+            return query.ToList();
+        }
+
+        public int count()
+        {
+            throw new NotImplementedException();
         }
 
         public ChinookContext chinookContext
