@@ -20,10 +20,10 @@ namespace WebFormTest.Site.ArtistWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.IsPostBack)
-            {
+            //if (!this.IsPostBack)
+            //{
                 Cargar_lista_General();
-            }
+            //}
         }
 
         protected void btnFirst_Click(object sender, EventArgs e)
@@ -67,20 +67,25 @@ namespace WebFormTest.Site.ArtistWeb
             Artist cArtista = _Unit.Artists.GetByName(txtBuscar_Nombre.Text);
             List<Artist> listaArtistas = new List<Artist>();
             listaArtistas.Add(cArtista);
-            ArtistGridView.DataSource = null;
             ArtistGridView.DataSource = listaArtistas;
             ArtistGridView.DataBind();
         }
 
         protected void ArtistGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            int iPageIndex = e.NewPageIndex + 1;
-            int iPageSize = ArtistGridView.PageSize;
-            IEnumerable<Artist> lArtistas = _Unit.Artists.GetArtistPage(iPageIndex, iPageSize);
-            List<Artist> listaArtistas = lArtistas.ToList();
-            ArtistGridView.DataSource = listaArtistas;
-            ArtistGridView.DataBind();
+            //int iPageIndex = e.NewPageIndex + 1;
+            //int iPageSize = ArtistGridView.PageSize;
+            //IEnumerable<Artist> lArtistas = _Unit.Artists.GetArtistPage(iPageIndex, iPageSize);
+            //List<Artist> listaArtistas = lArtistas.ToList();
+            //ArtistGridView.DataSource = listaArtistas;
             ArtistGridView.SelectedIndex = -1;
+            ArtistGridView.PageIndex = e.NewPageIndex;
+            ArtistGridView.DataBind();
+
+
+
+
+
             //ArtistGridView.BottomPagerRow.Visible = true;
             //ArtistGridView.PageIndex = e.NewPageIndex;
             //ArtistGridView.PagerSettings.Position = PagerPosition.TopAndBottom;

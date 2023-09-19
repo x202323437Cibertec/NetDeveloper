@@ -162,6 +162,8 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Site\AlbumWeb\CrearAlbum.aspx" />
+    <Content Include="Site\AlbumWeb\ListaAlbum.aspx" />
     <Content Include="Site\ArtistWeb\CrearArtist.aspx" />
     <Content Include="Site\ArtistWeb\ListaArtist.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -217,6 +219,20 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site\AlbumWeb\CrearAlbum.aspx.cs">
+      <DependentUpon>CrearAlbum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site\AlbumWeb\CrearAlbum.aspx.designer.cs">
+      <DependentUpon>CrearAlbum.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site\AlbumWeb\ListaAlbum.aspx.cs">
+      <DependentUpon>ListaAlbum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site\AlbumWeb\ListaAlbum.aspx.designer.cs">
+      <DependentUpon>ListaAlbum.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site\ArtistWeb\CrearArtist.aspx.cs">
       <DependentUpon>CrearArtist.aspx</DependentUpon>
