@@ -3,8 +3,6 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace WebFormTest.Site.ArtistWeb
@@ -20,33 +18,18 @@ namespace WebFormTest.Site.ArtistWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!this.IsPostBack)
-            //{
-                Cargar_lista_General();
-            //}
-        }
-
-        protected void btnFirst_Click(object sender, EventArgs e)
-        {
-            ArtistGridView.SelectedIndex = 0;
-            ArtistGridView.PageIndex = 0;
-            ArtistGridView.DataBind();
-        }
-
-        protected void btnLast_Click(object sender, EventArgs e)
-        {
-            int intLastRowIndex = ArtistGridView.Rows.Count - 1;
-            ArtistGridView.SelectedIndex = intLastRowIndex;
-            int intLastPageIndex = ArtistGridView.PageCount - 1;
-            ArtistGridView.PageIndex = intLastPageIndex;
-            ArtistGridView.DataBind();
+            if (!this.IsPostBack)
+            {
+                CargarPorPagina(1);
+            }
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtBuscar_Nombre.Text))
             {
-                Cargar_lista_General();
+                int indexA = int.Parse(lblPagina.Text);
+                CargarPorPagina(indexA);
             }
             else
             {
@@ -54,13 +37,40 @@ namespace WebFormTest.Site.ArtistWeb
             }
         }
 
-        private void Cargar_lista_General()
+        protected void btnFirst_Click(object sender, EventArgs e)
         {
-            IEnumerable<Artist> lArtistas = _Unit.Artists.GetArtistsByStore();
-            List<Artist> listaArtistas = lArtistas.ToList();
-            ArtistGridView.DataSource = listaArtistas;
-            ArtistGridView.DataBind();
+            CargarPorPagina(1);
         }
+
+        protected void btnLast_Click(object sender, EventArgs e)
+        {
+            int registros = TotalRegistros();
+            int filasPorPagina = ArtistGridView.PageSize;
+            int paginaA = (registros / filasPorPagina);
+            int paginaB = ((registros % filasPorPagina) > 0) ? 1 : 0;
+            int pagina = paginaA + paginaB;
+            CargarPorPagina(pagina);
+        }
+
+        protected void btnAnterior_Click(object sender, EventArgs e)
+        {
+            int page0 = int.Parse(lblPagina.Text) - 1;
+            CargarPorPagina(page0);
+        }
+
+        protected void btnNext_Click(object sender, EventArgs e)
+        {
+            int page0 = int.Parse(lblPagina.Text) + 1;
+            CargarPorPagina(page0);
+        }
+
+        //private void Cargar_lista_General()
+        //{
+        //    IEnumerable<Artist> lArtistas = _Unit.Artists.GetArtistsByStore();
+        //    List<Artist> listaArtistas = lArtistas.ToList();
+        //    ArtistGridView.DataSource = listaArtistas;
+        //    ArtistGridView.DataBind();
+        //}
 
         private void Cargar_lista_PorNombre()
         {
@@ -69,29 +79,54 @@ namespace WebFormTest.Site.ArtistWeb
             listaArtistas.Add(cArtista);
             ArtistGridView.DataSource = listaArtistas;
             ArtistGridView.DataBind();
+            ActualizarPaginacion(1);
         }
 
         protected void ArtistGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            //int iPageIndex = e.NewPageIndex + 1;
-            //int iPageSize = ArtistGridView.PageSize;
-            //IEnumerable<Artist> lArtistas = _Unit.Artists.GetArtistPage(iPageIndex, iPageSize);
-            //List<Artist> listaArtistas = lArtistas.ToList();
-            //ArtistGridView.DataSource = listaArtistas;
-            ArtistGridView.SelectedIndex = -1;
-            ArtistGridView.PageIndex = e.NewPageIndex;
+            int iPageIndex = e.NewPageIndex;
+            ArtistGridView.PageIndex = iPageIndex;
+            CargarPorPagina(iPageIndex);
+        }
+
+        public void CargarPorPagina(int pPageIndex)
+        {
+            int pageSize = ArtistGridView.PageSize;
+            int pageIndex = pPageIndex;
+
+            IEnumerable<Artist> eArtistas = _Unit.Artists.GetArtistPage(pageIndex, pageSize);
+            List<Artist> lArtistas = eArtistas.ToList();
+
+            ArtistGridView.DataSource = lArtistas;
             ArtistGridView.DataBind();
 
-
-
-
-
-            //ArtistGridView.BottomPagerRow.Visible = true;
-            //ArtistGridView.PageIndex = e.NewPageIndex;
-            //ArtistGridView.PagerSettings.Position = PagerPosition.TopAndBottom;
-            //ArtistGridView.PagerSettings.Mode = PagerButtons.NumericFirstLast;
-            //ArtistGridView.PagerSettings.Visible = true;
-            //ArtistGridView.DataBind();
+            ActualizarPaginacion(pPageIndex);
         }
+
+        public void ActualizarPaginacion(int pIndex)
+        {
+            lblPagina.Text = pIndex.ToString();
+            ActualizarTotalPaginacion();
+        }
+
+        private void ActualizarTotalPaginacion()
+        {
+            int registros = TotalRegistros();
+            int filasPorPagina = ArtistGridView.PageSize;
+            int paginaA = (registros / filasPorPagina);
+            int paginaB = ((registros % filasPorPagina) > 0) ? 1 : 0;
+            int pagina = paginaA + paginaB;
+            lblPaginasTotales.Text = pagina.ToString();
+        }
+
+        public int TotalRegistros()
+        {
+            return _Unit.Artists.Count();
+        }
+
+        
+
+
+
     }
 }

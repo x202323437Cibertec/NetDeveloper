@@ -5,7 +5,7 @@
     </a>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ArtistContent" runat="server">
-    <h2>Crear nuevo artista</h2>
+    <h2>Crear nuevo álbum</h2>
     <div class="row">
         <div>
             <asp:Label ID="Label1" runat="server" Text="Titulo"></asp:Label>
