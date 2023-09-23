@@ -1,5 +1,5 @@
 
--- EXEC dbo.GetTracksByPlaylist 1;
+-- EXEC dbo.GetTracksByPlaylist 6;
 ALTER PROCEDURE dbo.GetTracksByPlaylist
 @PI_PlaylistId	INT
 AS
@@ -19,5 +19,4 @@ BEGIN
 	;
 END
 
-GO
 

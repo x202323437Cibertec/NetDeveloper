@@ -222,6 +222,7 @@
     <Content Include="Site.Master" />
     <Content Include="Site\ArtistWeb\CrearArtist.aspx" />
     <Content Include="Site\ArtistWeb\ListaArtist.aspx" />
+    <Content Include="Site\PlaylistWeb\AMacuri_SP.sql" />
     <Content Include="Site\PlaylistWeb\wfFormulario.aspx" />
     <Content Include="Site\PlaylistWeb\wfListado.aspx" />
     <Content Include="ViewSwitcher.ascx" />
