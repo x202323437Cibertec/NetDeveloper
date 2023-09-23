@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories
 {
-    public interface IPlaylistRepository : IRepository<Playlist>
+    public interface IPlaylistTrackRepository : IRepository<PlaylistTrack>
     {
-        Playlist GetByName(string pName);
-        IEnumerable<PlaylistTrackVM> GetTracksByPlaylist(int pPlaylistId);
+        PlaylistTrack GetByIDs(int pPlaylistId, int pTrackId);
     }
 }

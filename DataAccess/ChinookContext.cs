@@ -30,6 +30,8 @@ namespace DataAccess
 
         public virtual DbSet<Track> Track { get; set; }
 
-        
+        public virtual DbSet<PlaylistTrack> PlaylistTrack { get; set; }
+
+
     }
 }

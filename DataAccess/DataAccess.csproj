@@ -63,10 +63,12 @@
     <Compile Include="Repositories\IArtistRepository.cs" />
     <Compile Include="Repositories\ICustomerRepository.cs" />
     <Compile Include="Repositories\IPlaylistRepository.cs" />
+    <Compile Include="Repositories\IPlaylistTrackRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Repositories\ITrackRepository.cs" />
     <Compile Include="Repositories\PlaylistRepository.cs" />
+    <Compile Include="Repositories\PlaylistTrackRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\TrackRepository.cs" />
     <Compile Include="UnitOfWork.cs" />

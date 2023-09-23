@@ -1,4 +1,5 @@
 ﻿using Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DataAccess.Repositories
@@ -13,9 +14,17 @@ namespace DataAccess.Repositories
         {
             return chinookContext.Track.FirstOrDefault(tra => tra.Name == pName);
         }
+
+        public List<Track> GetAllByMpegType()
+        {
+            return chinookContext.Track.Where(tra => tra.MediaTypeId == 1).ToList();
+        }
+
+
         public ChinookContext chinookContext
         {
             get { return Context as ChinookContext; }
         }
+
     }
 }

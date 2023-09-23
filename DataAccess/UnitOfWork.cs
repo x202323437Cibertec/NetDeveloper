@@ -19,6 +19,7 @@ namespace DataAccess
             Playlist = new PlaylistRepository(pContext);
             Track = new TrackRepository(pContext);
             Customers = new CustomerRepository(pContext);
+            PlaylistTrack = new PlaylistTrackRepository(pContext);
         }
 
         public IArtistRepository Artists { get; private set; }
@@ -30,6 +31,8 @@ namespace DataAccess
         public ITrackRepository Track { get; private set; }
 
         public ICustomerRepository Customers { get; private set; }
+
+        public IPlaylistTrackRepository PlaylistTrack { get; private set; }
 
         public int Complete()
         {

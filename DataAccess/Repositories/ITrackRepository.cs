@@ -10,5 +10,8 @@ namespace DataAccess.Repositories
     public interface ITrackRepository : IRepository<Track>
     {
         Track GetByName(string pName);
+
+        List<Track> GetAllByMpegType();
+
     }
 }

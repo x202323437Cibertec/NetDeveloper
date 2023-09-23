@@ -11,7 +11,16 @@ namespace WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!this.IsPostBack)
+            {
+                Exception str0 = Application["aekError"] as Exception;
+                if (str0 != null)
+                {
+                    lblError.Text = str0.Message;
+                    lblError.Text += Environment.NewLine + str0.InnerException;
+                    lblError.Text += Environment.NewLine + str0.StackTrace;
+                }
+            }
         }
     }
 }

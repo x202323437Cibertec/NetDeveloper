@@ -35,6 +35,7 @@ namespace WebForms
             }
             _logger = LogManager.GetLogger(typeof(Global));
             _logger.Error(ex);
+            Application["aekError"] = ex;
             Response.Redirect("~/Error.aspx");
         }
     }
