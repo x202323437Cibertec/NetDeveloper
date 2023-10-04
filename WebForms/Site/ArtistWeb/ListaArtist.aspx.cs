@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
+using WebForms.App_Code;
 
 namespace WebForms.Site.ArtistWeb
 {
-    public partial class ListaArtist : System.Web.UI.Page
+    public partial class ListaArtist : BasePage
     {
         private UnitOfWork _Unit;
 
@@ -20,6 +21,8 @@ namespace WebForms.Site.ArtistWeb
         {
             if (!this.IsPostBack)
             {
+                VerifyUser();
+                IsUserInRole("SADMIN");
                 CargarPorPagina(1);
             }
         }

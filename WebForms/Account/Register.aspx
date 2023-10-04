@@ -37,6 +37,14 @@
             </div>
         </div>
         <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="txtUserRol" CssClass="col-md-2 control-label">User Rol</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox ID="txtUserRol" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUserRol"
+                    CssClass="text-danger" ErrorMessage="The UserRol field is required." />
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <asp:Button runat="server" OnClick="CreateUser_Click" Text="Register" CssClass="btn btn-default" />
             </div>

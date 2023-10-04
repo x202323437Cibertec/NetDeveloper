@@ -6,10 +6,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebForms.App_Code;
 
 namespace WebForms.Site.PlaylistWeb
 {
-    public partial class wfListado : System.Web.UI.Page
+    public partial class wfListado : BasePage
     {
         private UnitOfWork _Unit;
 
@@ -22,6 +23,8 @@ namespace WebForms.Site.PlaylistWeb
         {
             if (!this.IsPostBack)
             {
+                VerifyUser();
+                IsUserInRole("USUARIO");
                 Playlist_Cargar();
             }
         }
