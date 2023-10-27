@@ -39,7 +39,7 @@ namespace WebForms
                 return;
             }
             _logger.Error(ex);
-            Application["aekError"] = ex;
+            //Application["aekError"] = ex;
             Response.Redirect("~/Error.aspx");
         }
 

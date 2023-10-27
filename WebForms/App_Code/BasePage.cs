@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 
@@ -7,19 +8,27 @@ namespace WebForms.App_Code
 {
     public class BasePage: System.Web.UI.Page
     {
+        string strConfig0 = ConfigurationManager.AppSettings["asKeyFlagAutenticationBasic"];
+
         protected void VerifyUser()
         {
-            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+            if (!string.IsNullOrEmpty(strConfig0) && strConfig0 == "1")
             {
-                RedirectToLogin();
+                if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    RedirectToLogin();
+                }
             }
         }
 
         protected void IsUserInRole(string pRole)
         {
-            if (!HttpContext.Current.User.IsInRole(pRole))
+            if (!string.IsNullOrEmpty(strConfig0) && strConfig0 == "1")
             {
-                RedirectToLogin();
+                if (!HttpContext.Current.User.IsInRole(pRole))
+                {
+                    RedirectToLogin();
+                }
             }
         }
 

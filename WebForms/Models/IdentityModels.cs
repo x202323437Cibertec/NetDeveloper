@@ -30,7 +30,7 @@ namespace WebForms.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("ChinookCnx", throwIfV1Schema: false)
+            : base("ChinookCnxEF", throwIfV1Schema: false)
         {
         }
 

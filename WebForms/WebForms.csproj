@@ -225,6 +225,8 @@
     <Content Include="Site\PlaylistWeb\AMacuri_SP.sql" />
     <Content Include="Site\PlaylistWeb\wfFormulario.aspx" />
     <Content Include="Site\PlaylistWeb\wfListado.aspx" />
+    <Content Include="Site\Pruebas\frmEnviar.aspx" />
+    <Content Include="Site\Pruebas\frmRecibir.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -432,6 +434,20 @@
     </Compile>
     <Compile Include="Site\PlaylistWeb\wfListado.aspx.designer.cs">
       <DependentUpon>wfListado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site\Pruebas\frmEnviar.aspx.cs">
+      <DependentUpon>frmEnviar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site\Pruebas\frmEnviar.aspx.designer.cs">
+      <DependentUpon>frmEnviar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site\Pruebas\frmRecibir.aspx.cs">
+      <DependentUpon>frmRecibir.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site\Pruebas\frmRecibir.aspx.designer.cs">
+      <DependentUpon>frmRecibir.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">

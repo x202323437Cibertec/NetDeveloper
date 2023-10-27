@@ -22,7 +22,7 @@ namespace WebForms.Site.ArtistWeb
             if (!this.IsPostBack)
             {
                 VerifyUser();
-                IsUserInRole("SADMIN");
+                IsUserInRole("ADMIN");
                 CargarPorPagina(1);
             }
         }

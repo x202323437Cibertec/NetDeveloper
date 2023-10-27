@@ -4,12 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebForms.App_Code;
 
 namespace WebForms.Site.ArtistWeb
-{
-    public partial class CrearArtist : System.Web.UI.Page
+{ 
+    public partial class CrearArtist : BasePage
     {
         private UnitOfWork _Unit;
 
@@ -20,17 +22,33 @@ namespace WebForms.Site.ArtistWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void btnCrear_Click(object sender, EventArgs e)
-        {
-            var artista = new Artist { Name=txtName.Text };
-            _Unit.Artists.Add(artista);
-            if (_Unit.Complete() > 0)
+            if (!this.IsPostBack)
             {
-                Response.Redirect("ListaArtist.aspx");
+                VerifyUser();
+                IsUserInRole("ADMIN");
             }
         }
+
+        //protected void btnCrear_Click(object sender, EventArgs e)
+        //{
+        //    var artista = new Artist { Name=txtName.Text };
+        //    _Unit.Artists.Add(artista);
+        //    if (_Unit.Complete() > 0)
+        //    {
+        //        Response.Redirect("ListaArtist.aspx");
+        //    }
+        //}
+
+        [WebMethod]
+        public static bool InsertArtist(string pName)
+        {
+            var artist = new Artist { Name = pName };
+            using (var unit = new UnitOfWork(new ChinookContext()))
+            {
+                unit.Artists.Add(artist);
+                return unit.Complete() > 0;
+            }
+        }
+
     }
 }

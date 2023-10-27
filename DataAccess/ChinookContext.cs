@@ -7,7 +7,7 @@ namespace DataAccess
 {
     public class ChinookContext: DbContext
     {
-        public ChinookContext() : base("ChinookCnx")
+        public ChinookContext() : base("ChinookCnxEF")
         {
             Database.SetInitializer<ChinookContext>(null);
             Configuration.AutoDetectChangesEnabled = false;
