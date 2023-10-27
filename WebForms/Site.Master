@@ -49,10 +49,30 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/">Inicio</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
-                        <li><a runat="server" href="~/Site/ArtistWeb/ListaArtist.aspx">Artist</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Artistas<b class="caret"></b> </a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/Site/ArtistWeb/ListaArtist">Artistas</a></li>
+                                <li><a runat="server" href="~/Site/ArtistWeb/ReporteArtist">Reporte</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Album<b class="caret"></b> </a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/Site/Albums/AlbumTracks">Ver albunes</a></li>
+                                <li><a runat="server" href="~/Site/Albums/BusquedaAlbum">Buscar</a></li>
+                                <li><a runat="server" href="~/Site/Albums/VotacionAlbum">Votacion</a></li>                                
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ventas<b class="caret"></b> </a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/Site/Ventas/Ventas">Clientes por pais</a></li>                                
+                            </ul>
+                        </li>
                         <li><a runat="server" href="~/Site/PlaylistWeb/wfListado.aspx">PLAYLIST</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
@@ -60,6 +80,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Register">Register</a></li>
                                 <li><a runat="server" href="~/Account/Login">Log in</a></li>
+                                <li><a runat="server" href="~/Site/Usuarios/ListaUsauriosAjax">Usuarios</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>

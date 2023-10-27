@@ -222,6 +222,7 @@
     <Content Include="Site.Master" />
     <Content Include="Site\ArtistWeb\CrearArtist.aspx" />
     <Content Include="Site\ArtistWeb\ListaArtist.aspx" />
+    <Content Include="Site\ArtistWeb\ReporteArtist.aspx" />
     <Content Include="Site\PlaylistWeb\AMacuri_SP.sql" />
     <Content Include="Site\PlaylistWeb\wfFormulario.aspx" />
     <Content Include="Site\PlaylistWeb\wfListado.aspx" />
@@ -413,6 +414,13 @@
     </Compile>
     <Compile Include="Site\ArtistWeb\ListaArtist.aspx.designer.cs">
       <DependentUpon>ListaArtist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site\ArtistWeb\ReporteArtist.aspx.cs">
+      <DependentUpon>ReporteArtist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site\ArtistWeb\ReporteArtist.aspx.designer.cs">
+      <DependentUpon>ReporteArtist.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site\MantTemplate.master.cs">
       <DependentUpon>MantTemplate.master</DependentUpon>
